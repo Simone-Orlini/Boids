@@ -1,0 +1,14 @@
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.csproj.AssemblyReference.cache
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.csproj.CoreCompileInputs.cache
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\Boids.exe.config
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\Boids.exe
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\Boids.pdb
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\aiv-fast2d.dll
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\OpenTK.dll
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\OpenTK.pdb
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\OpenTK.xml
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.csproj.Up2Date
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.exe
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.pdb
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\boid.png
+D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\grey_ball.png
