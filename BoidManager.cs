@@ -8,12 +8,9 @@ namespace Boids
     {
         private static List<Boid> boids;
 
-        private static Random rand;
-
         public static void Init()
         {
             boids = new List<Boid>();
-            rand = new Random();
         }
 
         public static void AddItem()
@@ -33,14 +30,19 @@ namespace Boids
         {
             if (boids.Count <= 1) return;
 
-            for(int i = 0; i < boids.Count - 1; i++)
+            for(int i = 0; i < boids.Count; i++)
             {
-                Vector2 dst = boids[i].Position - boids[i + 1].Position;
-
-                if(dst.LengthSquared > boids[i].ViewDst)
+                for(int j = 0; j < boids.Count; j++)
                 {
-                    boids[i].AddNeighbour(boids[i + 1]);
-                    boids[i + 1].AddNeighbour(boids[i]);
+                    if(j  == i) continue;
+
+                    Vector2 dst = boids[i].Position - boids[j].Position;
+
+                    if(dst.LengthSquared < boids[i].ViewDst * boids[i].ViewDst)
+                    {
+                        boids[i].AddNeighbour(boids[j]);
+                        boids[j].AddNeighbour(boids[i]);
+                    }
                 }
             }
         }

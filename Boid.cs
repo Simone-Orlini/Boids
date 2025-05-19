@@ -15,16 +15,22 @@ namespace Boids
 
         Vector2 velocity;
         float speed = 300;
-        List<Boid> neighbours;
+
+        Random rand;
 
         // Sensors
-        float viewDst = 300;
-        float closeDst = 100;
-        float avoidFactor = 50f;
+        float viewDst = 100;
+        float closeDst = 50;
+        float avoidFactor = 10;
+        float alignFactor = 0.01f;
+        float cohesionFactor = 0.1f;
+        List<Boid> neighbours;
 
+        // Props
         public float HalfWidth { get { return sprite.Width * 0.5f; } }
         public float HalfHeight { get { return sprite.Height * 0.5f; } }
         public Vector2 Position { get { return sprite.position; } set { sprite.position = value; } }
+        public Vector2 Velocity { get { return velocity; } }
         public Vector2 Forward
         {
             get
@@ -41,12 +47,14 @@ namespace Boids
 
         public Boid(Vector2 position)
         {
+            rand = new Random();
+
             texture = new Texture("boid.png");
             sprite = new Sprite(texture.Width, texture.Height);
             sprite.position = position;
             sprite.scale = new Vector2(0.6f, 0.6f);
             sprite.pivot = new Vector2(HalfWidth, HalfHeight);
-            velocity = new Vector2(speed, speed);
+            velocity = new Vector2(rand.Next((int)-speed, (int)speed), rand.Next((int)-speed, (int)speed)).Normalized() * speed;
 
             neighbours = new List<Boid>();
 
@@ -57,7 +65,7 @@ namespace Boids
             debugSprite.pivot = new Vector2(viewDst * 0.5f, viewDst * 0.5f);
         }
 
-        public Vector2 FollowMouse(Vector2 mousePosition)
+        private Vector2 FollowMouse(Vector2 mousePosition)
         {
             Vector2 dst = mousePosition - sprite.position;
 
@@ -81,7 +89,7 @@ namespace Boids
             neighbours.Remove(neighbour);
         }
 
-        private void CheckNeighbours()
+        private void Separation()
         {
             for (int i = 0; i < neighbours.Count; i++)
             {
@@ -96,19 +104,81 @@ namespace Boids
                 if (dst.LengthSquared < closeDst * closeDst)
                 {
                     velocity -= dst.Normalized() * avoidFactor;
-                    Console.WriteLine("Too close");
                 }
+            }
+        }
+        private void Alignment()
+        {
+            if (neighbours.Count < 1) return;
+
+            Vector2 AvgDir = velocity;
+
+            for(int i = 0; i < neighbours.Count; i++)
+            {
+                AvgDir += neighbours[i].Velocity;
+            }
+
+            AvgDir /= neighbours.Count;
+
+            velocity += AvgDir * alignFactor;
+        }
+
+        private void Cohesion()
+        {
+            if (neighbours.Count < 1) return;
+
+            Vector2 AvgPos = sprite.position;
+            Vector2 AvgVel = velocity;
+
+            for (int i = 0; i < neighbours.Count; i++)
+            {
+                AvgPos += neighbours[i].Position;
+                AvgVel += neighbours[i].Velocity;
+            }
+
+            AvgPos /= neighbours.Count;
+            AvgVel /= neighbours.Count;
+
+            velocity += ((AvgPos - sprite.position) * cohesionFactor + (AvgVel - velocity) * 0.01f); // Check the distance from the center, not just the avarage position (thanks https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html#Separation)
+        }
+
+        private void PacMan()
+        {
+            if (sprite.position.X < -HalfWidth)
+            {
+                sprite.position.X = Game.Window.Width;
+            }
+            else if (sprite.position.X > Game.Window.Width + HalfWidth)
+            {
+                sprite.position.X = -HalfWidth;
+            }
+
+            if (sprite.position.Y < -HalfHeight)
+            {
+                sprite.position.Y = Game.Window.Height;
+            }
+            else if (sprite.position.Y > Game.Window.Height + HalfHeight)
+            {
+                sprite.position.Y = -HalfHeight;
             }
         }
 
         public void Update()
         {
-            velocity = FollowMouse(Game.Window.MousePosition);
+            //velocity = FollowMouse(Game.Window.MousePosition);
 
-            CheckNeighbours();
+            //Cohesion();
+            Alignment();
+            Separation();
+
+            velocity = velocity.Normalized() * speed;
 
             sprite.position += velocity * Game.DeltaTime;
             Forward = velocity;
+
+            PacMan();
+
+            Console.WriteLine(neighbours.Count);
 
             debugSprite.position = sprite.position;
         }

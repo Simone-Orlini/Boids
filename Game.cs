@@ -36,9 +36,9 @@ namespace Boids
                     pressed = false;
                 }
 
-                BoidManager.CheckNeighbours();
-
                 BoidManager.Update();
+
+                BoidManager.CheckNeighbours();
 
                 BoidManager.Draw();
 
