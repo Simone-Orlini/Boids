@@ -23,7 +23,7 @@ namespace Boids
         float closeDst = 50;
         float avoidFactor = 10;
         float alignFactor = 0.01f;
-        float cohesionFactor = 0.1f;
+        float cohesionFactor = 0.01f;
         List<Boid> neighbours;
 
         // Props
@@ -52,7 +52,7 @@ namespace Boids
             texture = new Texture("boid.png");
             sprite = new Sprite(texture.Width, texture.Height);
             sprite.position = position;
-            sprite.scale = new Vector2(0.6f, 0.6f);
+            sprite.scale = new Vector2(0.3f, 0.3f);
             sprite.pivot = new Vector2(HalfWidth, HalfHeight);
             velocity = new Vector2(rand.Next((int)-speed, (int)speed), rand.Next((int)-speed, (int)speed)).Normalized() * speed;
 
@@ -139,7 +139,7 @@ namespace Boids
             AvgPos /= neighbours.Count;
             AvgVel /= neighbours.Count;
 
-            velocity += ((AvgPos - sprite.position) * cohesionFactor + (AvgVel - velocity) * 0.01f); // Check the distance from the center, not just the avarage position (thanks https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html#Separation)
+            velocity += ((AvgPos - sprite.position) * cohesionFactor /*+ (AvgVel - velocity) * 0.001f*/); // Check the distance from the center, not just the avarage position (thanks https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html#Separation)
         }
 
         private void PacMan()
@@ -167,18 +167,19 @@ namespace Boids
         {
             //velocity = FollowMouse(Game.Window.MousePosition);
 
-            //Cohesion();
+            Cohesion();
             Alignment();
             Separation();
 
-            velocity = velocity.Normalized() * speed;
+            if(velocity.LengthSquared > speed * speed)
+            {
+                velocity = velocity.Normalized() * speed;
+            }
 
             sprite.position += velocity * Game.DeltaTime;
             Forward = velocity;
 
             PacMan();
-
-            Console.WriteLine(neighbours.Count);
 
             debugSprite.position = sprite.position;
         }

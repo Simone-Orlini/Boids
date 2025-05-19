@@ -12,3 +12,17 @@ D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.exe
 D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\obj\Debug\Boids.pdb
 D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\boid.png
 D:\cose desktop\programmazione\Programmi\VisualStudio\Boids\bin\Debug\grey_ball.png
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\boid.png
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\grey_ball.png
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\Boids.exe.config
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\Boids.exe
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\Boids.pdb
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\aiv-fast2d.dll
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\OpenTK.dll
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\OpenTK.pdb
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\bin\Debug\OpenTK.xml
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\obj\Debug\Boids.csproj.AssemblyReference.cache
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\obj\Debug\Boids.csproj.CoreCompileInputs.cache
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\obj\Debug\Boids.csproj.Up2Date
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\obj\Debug\Boids.exe
+C:\Users\simon\OneDrive\Desktop\Programmazione\Visual Studio\Boids\obj\Debug\Boids.pdb
