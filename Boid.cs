@@ -111,7 +111,7 @@ namespace Boids
         {
             if (neighbours.Count < 1) return;
 
-            Vector2 AvgDir = velocity;
+            Vector2 AvgDir = Vector2.Zero;
 
             for(int i = 0; i < neighbours.Count; i++)
             {
@@ -127,8 +127,8 @@ namespace Boids
         {
             if (neighbours.Count < 1) return;
 
-            Vector2 AvgPos = sprite.position;
-            Vector2 AvgVel = velocity;
+            Vector2 AvgPos = Vector2.Zero;
+            Vector2 AvgVel = Vector2.Zero;
 
             for (int i = 0; i < neighbours.Count; i++)
             {
@@ -171,7 +171,7 @@ namespace Boids
             Alignment();
             Separation();
 
-            if(velocity.LengthSquared > speed * speed)
+            if(velocity.LengthSquared > speed * speed || neighbours.Count <= 0)
             {
                 velocity = velocity.Normalized() * speed;
             }
