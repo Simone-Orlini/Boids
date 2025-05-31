@@ -65,18 +65,6 @@ namespace Boids
             debugSprite.pivot = new Vector2(viewDst * 0.5f, viewDst * 0.5f);
         }
 
-        private Vector2 FollowMouse(Vector2 mousePosition)
-        {
-            Vector2 dst = mousePosition - sprite.position;
-
-            if (dst.LengthSquared > 0)
-            {
-                return dst.Normalized() * speed;
-            }
-
-            return Vector2.Zero;
-        }
-
         public void AddNeighbour(Boid neighbour)
         {
             if (neighbours.Contains(neighbour)) return;
@@ -107,6 +95,7 @@ namespace Boids
                 }
             }
         }
+
         private void Alignment()
         {
             if (neighbours.Count < 1) return;
@@ -165,8 +154,6 @@ namespace Boids
 
         public void Update()
         {
-            //velocity = FollowMouse(Game.Window.MousePosition);
-
             Cohesion();
             Alignment();
             Separation();
